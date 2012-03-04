@@ -6,4 +6,4 @@ simple script to replace `substring` with `string` in all char/text-columns of g
 	<cfset dbr.datasource = dsn />
 	<cfset info = dbr.ReplaceInDB("foo","bar") />
 
-
+asdf
