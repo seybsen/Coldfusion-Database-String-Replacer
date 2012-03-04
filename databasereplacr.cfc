@@ -1,16 +1,16 @@
 <CFCOMPONENT output="false">
-	<CFPROPERTY name="datasource" hint="I'm the datasource in which to search and replace" />
+	<CFPROPERTY name="datasource" type="string" hint="I'm the datasource in which to search and replace" />
 	
 	<CFFUNCTION name="ReplaceInDB" access="public" returntype="any" output="false" hint="I replace all occurencies of substring in all text columns with given replacestring">
 		<CFARGUMENT name="substring" type="string" required="yes" default="foo" hint="I'm gettin replaced">
 		<CFARGUMENT name="replacestring" type="string" required="yes" default="bar" hint="I'm the new string">
 		
-		<CFSET var erg = arraynew(1) />
+		<cfset var erg = arraynew(1) />
 		
-		<CFSET var qTables = getTableNames() />
+		<cfset var qTables = getTableNames() />
 		
 		<CFLOOP query="qTables">
-			<CFSET var lFields = arraytolist(getFields(qTables["table_name"][qTables.currentrow])) />
+			<cfset var lFields = arraytolist(getFields(qTables["table_name"][qTables.currentrow])) />
 			
 			<CFIF listlen(lFields)>
 				<CFQUERY result="qReplace" datasource="#this.datasource#">
@@ -25,7 +25,7 @@
 					</CFLOOP>
 				</CFQUERY>
 	
-				<CFSET arrayappend(erg, {"affected_rows"=qReplace.recordCount, "statement"=qReplace.sql}) />
+				<cfset arrayappend(erg, {"affected_rows"=qReplace.recordCount, "statement"=qReplace.sql}) />
 			</CFIF>
 		</CFLOOP>
 		
@@ -40,11 +40,11 @@
 	
 	<CFFUNCTION name="getTextFieldsInTable" access="private" output="false" returntype="array" hint="I get all text fields from table as array from describe-query">
 		<CFARGUMENT name="fields" type="query" required="yes">
-		<CFSET var aFields = arraynew(1) />
+		<cfset var aFields = arraynew(1) /> 
 		
 		<CFLOOP query="fields">
 			<CFIF listfindnocase("char,text",right(fields.type_name,4))>
-				<CFSET arrayappend(aFields,fields.column_name) />
+				<cfset arrayappend(aFields,fields.column_name) />
 			</CFIF>
 		</CFLOOP>
 		
