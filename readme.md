@@ -1,7 +1,6 @@
 ##Usage:
 
-	<cfset dbr = new databasereplacr() />
-	<cfset dbr.datasource = "mydsn" />
+	<cfset dbr = new databasereplacr.init(datasource="mydsn") />
 	<cfset info = dbr.ReplaceInDB("foo","bar") />
 
 The replace is case sensitive and uses MySQL's [REPLACE-Function][1]
