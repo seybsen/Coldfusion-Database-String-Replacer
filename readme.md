@@ -1,4 +1,4 @@
-##Usage:
+# Usage
 
 	<cfset dbr = new databasereplacr(datasource="mydsn") />
 	<cfset info = dbr.ReplaceInDB("foo","bar") />
